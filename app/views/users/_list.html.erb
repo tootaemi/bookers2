@@ -1,0 +1,57 @@
+ <p id="notice"></p>
+        <div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+
+      <h2>User info</h2>
+
+      <% if @user.image.attached? %>
+ 
+    <td><%= image_tag book.image, size: "100x100" %></td>
+  <% else %>
+    <td><%= image_tag 'no_image', size: "100x100" %></td>
+  <% end %>
+
+    <div class='col-md-8 offset-md-1'>
+
+      <table class="table table-striped">
+
+ <thead>
+
+
+         <main>
+        <p id="notice"></p>
+        <div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+
+      <table class='table'>
+	<tr>  <th>name</th>
+	 <th> <%= link_to current_user.name, user_path(current_user) %></th>
+  </tr>
+  
+  <tr>
+	  <th>introduction</th>
+	  <th></th>
+  </tr>
+</table>
+
+ </thead>
+
+
+</table>
+  </div>
+<div class='row'>
+  <a class="btn btn-secondary btn-lg edit_user_2" href="/users/2/edit">
+    <i class="fas fa-user-cog"></i>
+</a></div>
+
+    <h2>New book</h2>
+<%= form_with model: @user do |f| %>
+
+   <h6>Title</h6>
+  <%= f.text_field :title %>
+   <h6>Opinion</h6>
+  <%= f.text_area :body %>
+  <%= f.submit "create book" %>
+  <% end %>

@@ -1,0 +1,72 @@
+
+
+<h1>User info</h1>
+
+ <table>
+  <thead>
+
+  <tr>
+  <th>name</th>
+  	 <th> <%= link_to current_user.name, user_path(current_user) %></th>
+  </tr>
+  <th>introduction</th>
+  <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  </tbody>
+</table>
+  </div>
+<div class='row'>
+  <a class="btn btn-secondary btn-lg edit_user_2" href="/users/2/edit">
+    <i class="fas fa-user-cog"></i>
+</a></div>
+
+
+<h1>New book</h1>
+
+
+<%= form_with model: @book do |f| %>
+
+  <h4>title</h4>
+  <%= f.text_field:title %>
+  <h4>body</h4>
+  <%= f.text_area:body %>
+  <p><%= f.submit 'Create Book' %></p>
+<% end %>
+
+
+
+  <div class='col-md-8 offset-md-1'>
+      <h2>Books</h2>
+      <table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th></th>
+      <th>Opinion</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+
+  <% @books.each do |book| %>
+   <% if book.image.attached? %>
+    <td><%= image_tag book.image, size: "100x100" %></td>
+  <% else %>
+    <td><%= image_tag 'no_image', size: "100x100" %></td>
+  <% end %>
+  
+  <td><%= book.body %></td>
+ <td><%= link_to "Show", book_path(book.id)%>
+  </td>
+
+  </tr>
+
+<% end %>
+</tbody>
+</table>
