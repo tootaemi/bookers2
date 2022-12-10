@@ -1,53 +1,89 @@
+<% if flash[:notice] %>
+     <p id="notice">
+       <%= flash[:notice] %>
+     </p>
+   <% end %>
+   
+   <h2>メッセージの投稿</h2>
 
+<%= form_for(@message) do |f|%>
+<%= render 'layouts/error_messages', model: f.object %>
+<div class="form-group">  
+<%= f.label :title %>
+<%= f.text_field :title %>
+</div>
 
-<h1>画像投稿フォーム</h1>
-  <%= form_with model: @user do |f| %>
-  
-    <h4>画像</h4>
-      <%= f.file_field :image, accept: "image/*" %>
-      
-    <h4>ショップ名</h4>
-      <%= f.text_field :shop_name %>
-    
-    <h4>説明</h4>
-      <%= f.text_area :caption %>
-    
-      <%= f.submit '投稿' %>
-      <% end %>
-      
-      
-      <h1>新規投稿</h1>
+<div class="form-group">        
+<%= f.label :content %>
+<%= f.text_area :content %>
+</div>
 
-<%= form_with model: @user, url:'/users' do |f| %>
+<%= f.submit "投稿する", class: "btn-primary" %>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  
-  <h4>本文</h4>
-  <%= f.text_area :body %>
-  
-
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  
-  <%= f.submit '投稿' %>
-  
 <% end %>
+<h1>User info</h1>
 
+ <table>
+  <thead>
+
+  <tr>
+  <th>name</th>
+
+  </tr>
+  <th>introduction</th>
+  <th colspan="3"></th>
+  
+  </thead>
+
+</table>
+
+<div class='row'>
+  <a class="btn btn-secondary btn-lg edit_user_2" href="/users/2/edit">
+    <i class="fas fa-user-cog"></i>
+</a></div>
+
+
+<h1>New book</h1>
 
 
 <%= form_with model: @book, url: '/books', method: :post do |f| %>
+
+   
+  <h4>title</h4>
+  <%= f.text_field:title %>
+  <h4>body</h4>
+  <%= f.text_area:body %>
+  <p><%= f.submit 'Create Book' %></p>
 <% end %>
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @book.body %>
-</p>
 
 
-<%= link_to "Edit", edit_book_path(@book.id) %> |
-<a class="back" href="/books">Back</a>
+
+  <div class='col-md-8 offset-md-1'>
+      <h2>Books</h2>
+      <table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th></th>
+      <th>Opinion</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+
+  <% @books.each do |book| %>
+   
+  <% end %>
+  
+  <td><%= @book.body %></td>
+ <td><%= link_to "Show", new_book_path(books.new.id)%>
+  </td>
+
+  </tr>
+
+
+</tbody>
+</table>

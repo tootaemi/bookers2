@@ -1,105 +1,31 @@
-<h1>編集画面</h1>
+<%= notice %>
 
-<%= form_with model: @user do |f| %>
-<%= form_with model: @user, url: update_user_path(@us.id), method: :patch do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
 
-  <h4>本文</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit '保存' %>
-
+<% if @book.errors.any? %>
+<%= @book.errors.count %>errors prohibited this obj from being saved:
+<ul>
+<% @book.errors.full_messages.each do |message| %>
+<li><%= message %></li>
+<% end %>
+</ul>
 <% end %>
 
 
+<h1>Editing Book</h1>
+
+<%= form_with model: @book, local: true do |f| %>
 
 
-<html>
-  <head>
-    <title>Bookers2</title>
-    <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="wuDfS6uJQP6HwyaS_wONLOjAVvjLSPpuEG8moi5V9CECnRLDvah41aOj4BDkfqajWTumdsl9jEFGvhJrTiDXtg" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" media="all" href="/packs/css/application-859f38f5.css" data-turbolinks-track="reload" />
-    <script src="/packs/js/application-8c498bd08fe3c47f4c35.js" data-turbolinks-track="reload"></script>
-  </head>
-  <body>
-    <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/"><span>Bookers</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <li>
-            <a class="nav-link text-light" href="/">
-              <i class="fas fa-home"></i> Home
-</a>          </li>
-          <li>
-            <a class="nav-link text-light" href="/home/about">
-              <i class="fas fa-link"></i> About
-</a>          </li>
-          <li>
-            <a class="nav-link text-light" href="/users/sign_up">
-              <i class="fas fa-user-plus"></i> Sign up
-</a>          </li>
-          <li>
-            <a class="nav-link text-light" href="/users/sign_in">
-              <i class="fas fa-sign-in-alt"></i> Log in
-</a>          </li>
-        </ul>
-      </div>
+    <div>
+        <%= f.label :Title%><br>
+        <%= f.text_field :title, autofocus: true %>
     </div>
-  </nav>
-</header>
-      <main>
-        <p id="notice"></p>
-        <div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-      <h2>Log in</h2>
-      <form action="/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="W6TBF8nf9OgvClkwEvg82Jl_JrNcBBfC3f_WV_aMxrCAyUmSaxZSc9Tr-5xyoUKrMwM2YK1QEGRE5hXXyy4QIQ" autocomplete="off" />
-        <div class="field">
-          <label for="user_name">Name</label><br />
-          <input autofocus="autofocus" class="name" type="text" name="user[name]" id="user_name" />
-        </div>
-        <div class="field">
-          <label for="user_password">Password</label><br />
-          <input autocomplete="off" class="password" type="password" name="user[password]" id="user_password" />
-        </div>
-          <div class="field">
-            <input name="user[remember_me]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" />
-            <label for="user_remember_me">Remember me</label>
-          </div>
-        <div class="actions">
-          <input type="submit" name="commit" value="Log in" class="btn btn-sm btn-primary" data-disable-with="Log in" />
-        </div>
-</form>
-  <a href="/users/sign_up">Sign up</a><br />
-
-  <a href="/users/password/new">Forgot your password?</a><br />
-
-
-
-
+    <div>
+        <%= f.label :Opinion%><br>
+        <%= f.text_area :body %>
     </div>
-  </div>
-</div>
+    <div><%= f.submit "Update Book" %></div>
+<% end %>
 
-      </main>
-    <footer>
-  <div class='container mt-5'>
-  	<div class='row'>
-    	<div class='mx-auto'>
-    		<p>CopyRight Infratop.inc</p>
-    	</div>
-    </div>
-  </div>
-</footer>
-
-  </body>
-</html>
+<%= link_to "Show", book_path(current_user)%> |
+<a class="back" href="/books">Back</a>
