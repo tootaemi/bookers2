@@ -1,19 +1,15 @@
-<% if flash[:notice] %>
-     <p id="notice">
-       <%= flash[:notice] %>
-     </p>
-   <% end %>
-   
+
+
    <h2>メッセージの投稿</h2>
 
-<%= form_for(@message) do |f|%>
+<%= form_for(@book) do |f|%>
 <%= render 'layouts/error_messages', model: f.object %>
-<div class="form-group">  
+<div class="form-group">
 <%= f.label :title %>
 <%= f.text_field :title %>
 </div>
 
-<div class="form-group">        
+<div class="form-group">
 <%= f.label :content %>
 <%= f.text_area :content %>
 </div>
@@ -32,7 +28,7 @@
   </tr>
   <th>introduction</th>
   <th colspan="3"></th>
-  
+
   </thead>
 
 </table>
@@ -48,7 +44,7 @@
 
 <%= form_with model: @book, url: '/books', method: :post do |f| %>
 
-   
+
   <h4>title</h4>
   <%= f.text_field:title %>
   <h4>body</h4>
@@ -67,7 +63,7 @@
       <th>Title</th>
       <th></th>
       <th>Opinion</th>
-      
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -75,9 +71,9 @@
 <tr>
 
   <% @books.each do |book| %>
-   
+
   <% end %>
-  
+
   <td><%= @book.body %></td>
  <td><%= link_to "Show", new_book_path(books.new.id)%>
   </td>
@@ -86,4 +82,32 @@
 
 
 </tbody>
+</table>
+
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Title</th>
+      <th scope="col">Opinion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td colspan="2"></td>
+
+    </tr>
+  </tbody>
 </table>

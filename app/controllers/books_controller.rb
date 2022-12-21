@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
+before_action :correct_user, only: [:edit, :update]
 
   def top
-      @user =  User.find(params[:id])
+      @user = User.find(params[:id])
    if @user.save
       flash[:notice] = "Welcome! You have signed up successfully."
        redirect_to user_path(@users.id)
@@ -19,32 +20,40 @@ class BooksController < ApplicationController
   def index
    @users = current_user
    @books = Book.all
-   @book = Book.new
+   @book = Book.new(book_params)
   end
 
 
 
   def show
    @books = Book.all
-   @book = Book.find(params[:id])
+   @book = Book.new(book_params)
+   @user = @book.user
   end
 
 
-  def edit
+def edit
    @book = Book.new
- 　@book = Book.find(params[:id])
-  end
+    if @book.user == current_user
+    render :edit
+    else
+    redirect_to books_path
+    end
+end
+
+
 
 
  def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    @books = Book.all
     if @book.save
      flash[:notice] = "You have created book successfully."
       redirect_to books_path
     else
      flash.now[:danger] = "投稿に失敗しました"
-    @books = Book.all
+
       render :index
 
     end
@@ -75,9 +84,14 @@ class BooksController < ApplicationController
    end
  end
 
-
- private
+private
      def book_params
-         params.require(:book).permit(:title, :body)
+         params.require(:book).permit(:title, :body, :profile_image)
      end
+
+def correct_user
+    @book = Book.find(params[:id])
+    @user = @book.user
+    redirect_to(books_path) unless @user == current_user
+end
 end

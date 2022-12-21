@@ -8,10 +8,12 @@ class ApplicationController < ActionController::Base
 
 
 
+  private
+  
   def after_sign_out_path_for(resource)
-    root_path
-
+    root_path 
   end
+
 
   protected
 
@@ -20,5 +22,4 @@ class ApplicationController < ActionController::Base
   end
 end
 
-
-
+ 

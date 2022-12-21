@@ -13,44 +13,61 @@
         <ul class="navbar-nav ml-auto">
 
 
+<%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <div class="container">
+      <a class="navbar-brand" href="/"><span>Bookers2</span></a>
+
               <% if user_signed_in? %>
 
-             <li>
-              <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-light' %>
-             </li>
-             <li>
-              <%= link_to "Users", users_path, class: 'nav-link text-light' %>
-             </li>
-             <li>
-              <%= link_to "Books", books_path, class: 'nav-link text-light' %>
-             </li>
+             <%= link_to user_path(current_user.id), class: "nav-link text-light", method: :get do %>
+             <i class="fa-solid fa-house-chimney"></i> Home
+             <% end %>
 
-              <li>
-              <%= link_to "Log out",  destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
-             </li>
+             <%= link_to users_path, class: "nav-link text-light", method: :get do %>
+             <i class="fas fa-users"></i>Users
+             <% end %>
+
+
+             <%= link_to books_path, class: "nav-link text-light", method: :get do %>
+             <i class="fas fa-book-open"></i>Books
+             <% end %>
+
+
+              <%= link_to destroy_user_session_path, class: "nav-link text-light", method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i>Log out
+              <% end %>
+
               <% else %>
-             <li>
-              <%= link_to "Home", root_path, class: 'nav-link text-light' %>
-             </li>
 
-             <li>
-              <%= link_to "About", about_path, class: 'nav-link text-light' %>
-             </li>
 
-             <li>
-              <%= link_to "Sign up",  new_user_registration_path, class: 'nav-link text-light' %>
-             </li>
 
-             <li>
-              <%= link_to "Log in", new_user_session_path, class: 'nav-link text-light' %>
-             </li>
+            <%= link_to root_path, class: "nav-link text-light", method: :get do %>
+             <i class="fa-solid fa-house-chimney"></i> Home
+            <% end %>
 
-           <% end %>
+            <%= link_to about_path, class: "nav-link text-light", method: :get do %>
+            <i class="fas fa-link"></i>About
+            <% end %>
+
+            <%= link_to new_user_registration_path, class: "nav-link text-light", method: :get do %>
+            <i class="fas fa-user-plus"></i>Sign up
+            <% end %>
+
+            <%= link_to new_user_session_path, class: "nav-link text-light", method: :get do %>
+            <i class="fas fa-sign-in-alt"></i>Log in
+            <% end %>
+
+            <% end %>
+            </div>
+
+
 
     </div>
   </nav>
 </header>
 </body>
+<p id="notice"><%= notice %></p>
   <%= yield %>
 </html>
 </head>
@@ -92,3 +109,14 @@
      </div>
      </div>
      </div>
+
+
+
+
+
+
+
+
+
+
+

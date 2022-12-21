@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2022_10_22_143724) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "body"
+    t.integer "profile_image"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -64,4 +65,13 @@ ActiveRecord::Schema.define(version: 2022_10_22_143724) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+
+
+
+  def change
+   add_column :users, :email, :string
+   add_index :users, :email, unique: true
+  end
+
+
 end

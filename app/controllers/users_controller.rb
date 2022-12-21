@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit]
+
+
 def top
       @user =  User.find(params[:id])
    if @user.save
@@ -14,22 +18,24 @@ end
 
   def new
    @user = User.new
+   flash[:notice] = "Welcome! You have signed up successfully."
   end
 
 
    def index
-     @user =  User.new(params[:id])
+     @user =  current_user
+     
      @books = Book.all
      @book = Book.new
 
-     @users = User.all
-     @user = User.new
      @users = User.all
    end
 
 
   def show
+    @user = User.new
     @user = User.find(params[:id])
+
     @books = @user.books
     @book = Book.new
     @users = current_user
@@ -41,28 +47,18 @@ end
   end
 
 
-  def edit
-    @book = Book.find(params[:id])
+
+def edit
+   @book = Book.find(params[:id])
+    @book = Book.new
+
     if @book.user == current_user
     render :edit
     else
     redirect_to books_path
     end
-  end
+end
 
-
-  def create
-     @user = User.new(user_params)
-
-    if @user.save
-      flash[:success] = 'ユーザー登録が完了しました'
-      redirect_to user_path
-    else
-      flash.now[:danger] = 'ユーザー登録に失敗しました'
-      render :index
-
-    end
-  end
 
 
   def update
@@ -82,4 +78,12 @@ end
    def user_params
       params.require(:user).permit(:name, :introduction, :profile_image)
    end
+
+
+
+  def correct_user
+    @user = User.find(params[:id])
+    @user = @user.book
+    redirect_to(users_path) unless @user == current_user
+  end
 end

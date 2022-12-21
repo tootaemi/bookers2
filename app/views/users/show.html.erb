@@ -1,56 +1,32 @@
-<% if flash[:notice] %>
-<p id="notice">
- <%= flash[:notice] %> </p>
-   <% end %>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= render 'users/list', user: @user, book: @book %>
+    </div>
 
+    <div class='col-md-8 offset-md-1'>
+     <h2>Books</h2>
+      <table class='table table-hover table-inverse'>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
 
- <body>
-<p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
-  </body>
-  
-<%= render 'users/list', users: @users, book: @book %>
+        <% if @book.profile_image.attached? %>
+        
+        <% end %>
 
+        <td></td>
+      </tr>
+      </tbody>
+      </table>
 
-  <div class='col-md-8 offset-md-1'>
-  <h2>Books</h2>
-  <table class='table table-hover table-inverse'>
-  <thead>
-  <tr>
-  <th></th>
-  <th>Title</th>
-  <th>Opinion</th>
-  <th colspan="3"></th>
-  </tr>
-  </thead>
-  
-  <tr>
-  <tbody>
-  <% @books.each do |book| %>
-     <td><%=link_to books_path %></td>
-  
-  
-  <td><%= book.body %></td>
-  
-  <td><%= link_to "Show", book_path(book.id)%>
-  </td>
-  <td>
-  <%= link_to "Edit", edit_user_path(book.id)%>
-  </td>
-  <td>
-  <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
-  </td>
-  <% end %>
-  
-  </tr>
-
-
-  </tbody>
-  </table>
+    </div>
   </div>
-  </div>
-  </div>
-  
-  <% @books.each do |book| %>
-  <% end %>
+</div>

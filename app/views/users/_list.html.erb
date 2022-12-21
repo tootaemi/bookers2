@@ -1,75 +1,54 @@
-  <p id="notice"></p>
-    <p id="alert"></p>
-  <div class='container px-5 px-sm-0'>
-  <div class='row'>
-  <div class='col-md-3'>
+<p id="notice"></p>
 
+<h2>User info</h2>
+ <% if @user.profile_image.attached? %>
 
+  <%= f.file_field :profile_image, accept: "image/*" %>
 
-
-
-
-  <h2>User info</h2>
-
-
- <% if current_user %>
-  <div class="profile-container">
-      
-      
-  <div class='col-md-8 offset-md-1'>
-  <table class="table table-striped">
-  <thead>
-
-   <main>
-   <p id="notice"></p>
-   <div class='container px-5 px-sm-0'>
-   <div class='row'>
-   <div class='col-md-3'>
-
-   <table class='table'>
-   <tr>  <h5 class="profile-name"><%= current_user.name %></h5>
-   <th>name       </th>
-   </tr><h3 class="profile-introduction"><%= current_user.introduction %></h3>
-  <tr>
-	 <th>introduction </th>
-	 <th></th>
-  </tr>
-  </table>
-
-  </thead>
-
-  </table>
-  </div>
-  
-  
-  
- 
-  <h2>User info</h2>
-  
-  
-  <p><%= link_to "プロフィール編集", edit_user_path(current_user), class: "pull-right" %></p>
-  </div>
+  <td><%= image_tag book.image, size: "100x100" %></td>
+  <% else %>
+  <td><%= image_tag 'no_image', size: "100x100" %></td>
  <% end %>
- 
- 
+
+
+<table class='table'>
+
+<p id="notice"></p>
+
+<tr>
+<th>name</th>
+<th><%= current_user.name %></th>
+</tr>
+
+<tr>
+ <th>introduction</th>
+ <th><%= current_user.introduction %></th>
+</tr>
+
+</table>
+
+
+
   <div class='row'>
-  <a class="btn btn-secondary btn-lg edit_user_2" href="/users/2/edit">
-  <i class="fas fa-user-cog"></i>
-  </a></div>
+  <a class="btn btn-outline-secondary btn-block edit_user_path" href="/users/path/edit">
+    <i class="fas fa-user-cog"></i>
+</a></div>
+
+
+  <div class='row'>
+  <a class="btn btn-outline-secondary btn-block edit_user_path">
+    <i class="fas fa-user-cog"></i>
+</a></div>
 
 
 
 
+  <h2>New book</h2>
+  <%= form_with model:book do |f| %>
+  <h6>Title</h6>
+  <%= f.text_field :title %>
+  <h6>Opinion</h6>
+  <%= f.text_area :body %>
+  <%= f.submit "create book" %>
+  <% end %>
 
-
- <h2>New book</h2>
- <%= form_with model:book do |f| %>
-
- <h6>Title</h6>
- <%= f.text_field :title %>
-
- <h6>Opinion</h6>
- <%= f.text_area :body %>
-
- <%= f.submit "create book" %>
- <% end %>
