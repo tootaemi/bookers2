@@ -1,31 +1,25 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      
-      <%= render 'users/list', user: @user, book: @book %>
-    </div>
+      <%= render 'users/info', user: @user, book: @book %>
+      </div>
+      <div class='col-md-8 offset-md-1'>
+        <h2>Book detail</h2>
+        <table class='table table-hover table-inverse'>
+          <thead>
+            <tr>
+              <th></th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <% if @user.profile_image.attached? %>
+                  <% end %>
+                  <td></td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  </div>
+                  </div>
+                  </div>
 
-    <div class='col-md-8 offset-md-1'>
-     <h2>Book detail</h2>
-      <table class='table table-hover table-inverse'>
-      <thead>
-        <tr>
-          <th></th>
-    
-        </tr>
-      </thead>
-      <tbody>
-      <tr>
-
-        <% if @book.profile_image.attached? %>
-        
-        <% end %>
-<p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image(100,100) %></p>
-        <td></td>
-      </tr>
-      </tbody>
-      </table>
-
-    </div>
-  </div>
-</div>

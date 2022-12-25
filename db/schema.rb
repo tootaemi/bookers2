@@ -67,11 +67,12 @@ ActiveRecord::Schema.define(version: 2022_10_22_143724) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 
 
-
-  def change
-   add_column :users, :email, :string
-   add_index :users, :email, unique: true
-  end
-
+def change
+    create_table :schools do |t|
+      t.string :name, null: false
+      t.timestamps
+    end
+    add_index :schools, :name, unique: true
+end
 
 end

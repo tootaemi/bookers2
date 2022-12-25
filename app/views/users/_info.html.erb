@@ -1,0 +1,33 @@
+<p id="notice"></p>
+<h2>User info</h2>
+<% if book.user.profile_image.attached? %>
+<%#= f.file_field :image, accept: "image/*" %>
+<%= image_tag user.profile_image, size: "100x100" %>
+<% else %>
+<%= image_tag 'no_image', size: "100x100" %>
+<% end %>
+<table class='table table-hover table-inverse'>
+ <tr>
+  <td>name</td>
+  <td><%= current_user.name %></td>
+  </tr>
+  <tr>
+   <td>introduction</td>
+   <td><%= current_user.introduction %></td>
+   </tr>
+   </table>
+   <div class='row'>
+    <%= link_to edit_user_path(current_user.id) do %>
+    <i class="fas fa-user-cog"></i>
+    <% end %></div>
+   
+    <h2>New book</h2>
+    <%= form_with model:book do |f| %>
+    <h6>Title</h6>
+    <%= f.text_field :title %>
+    <h6>Opinion</h6>
+    <%= f.text_area :body %>
+    <%= f.submit "create book" %>
+    <% end %>
+    
+    
