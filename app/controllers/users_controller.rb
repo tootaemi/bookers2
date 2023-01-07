@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!
-    before_action :correct_user, only: [:edit]
-    
+
+
     def top
         @user =  User.find(params[:id])
         if @user.save
@@ -11,59 +10,58 @@ class UsersController < ApplicationController
             render :index
         end
     end
-    
+
     def new
         @user = User.new
         flash[:notice] = "Welcome! You have signed up successfully."
     end
-    
+
     def index
-        @users = current_user
+        @user = current_user
+        @book = Book.new
         @books = Book.all
         @users = User.all
-        @user = User.new(user_params)
+
+        #@user = User.new(user_params)
     end
-    
+
     def show
-        @user = User.find(params[:id])
-        @books = @user.books.page(params[:page])
-        @book = Book.new
         @users = current_user
+        @books = Book.all
+        @user = User.find(params[:id])
+        @book = @user.books
+        @book_new = Book.new
     end
-    
+
+
     def destroy
         @user = User.find(params[:id])
     end
-    
+
     def edit
-        @book = Book.find(params[:id])
-        @book = Book.new
-        if @book.user == current_user
-            render :edit
+        @user = User.find(params[:id])
+        #@book = Book.new
+        if @user == current_user
+           render :edit
         else
-            redirect_to books_path
+             redirect_to user_path
         end
     end
-    
+
     def update
         @user = User.find(params[:id])
         if @user.update(user_params)
             flash[:notice] = "You have updated user successfully."
             redirect_to user_path(@user.id)
         else
-                flash.now[:danger] = "Name is too short (minimum is 2 characters)"
-                render :edit
+            #flash.now[:danger] = "Name is too short (minimum is 2 characters)"
+            render :edit
         end
     end
-    
+
     private
     def user_params
-        params.permit(:name, :introduction)
+        params.require(:user).permit(:name, :introduction)
     end
-    
-    def correct_user
-        @user = User.find(params[:id])
-        @user = @user.book
-        redirect_to(users_path) unless @user == current_user
-    end
+
 end

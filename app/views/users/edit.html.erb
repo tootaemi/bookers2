@@ -5,8 +5,6 @@
 <div class='container'>
 <div class='row'>
 <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-
-
 <h2>User info</h2>
 
 <% if @user.errors.any? %>
@@ -28,10 +26,10 @@
 </div>
 
 <%= form_with model: @user do |f| %>
-<label for="inputName">Name</label>
+<label for="inputName">Name</label><br>
 <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
 
-<br><label for="inputImage">Image</label>
+<br><label for="inputImage">Image</label><br>
 
 <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "pimage/*" %>
 
@@ -41,11 +39,6 @@
 <% end %>
 
 
-<% if @user.id == current_user.id %>
-<%= link_to edit_user_path(current_user.id) do %>
-<div class= " edit btn btn-outline-secondary btn-default btn-block" ><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></div>
-<% end %>
-        <% end %>
 
 
 </div>

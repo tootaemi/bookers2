@@ -1,10 +1,15 @@
-<%= notice %>
-
+<html>
+<body>
+<main>
+<p id="notice"></p>
+<div class='container'>
+<div class='row'>
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+<h1>Editing Book</h1>
 
 <% if @book.errors.any? %>
-<%= @book.errors.count %>errors prohibited this obj from being saved:
-<ul>
-<% @book.errors.full_messages.each do |message| %>
+<h3><%= @book.errors.count %>errors prohibited this obj from being saved:
+<ul></h3><% @book.errors.full_messages.each do |message| %>
 <li><%= message %></li>
 <% end %>
 </ul>
@@ -18,8 +23,6 @@
         <% end %>
 
 
-
-<h1>Editing Book</h1>
 
 <%= form_with model: @book, local: true do |f| %>
 
@@ -35,5 +38,16 @@
     <div><%= f.submit "Update Book" %></div>
 <% end %>
 
-<%= link_to "Show", book_path(current_user)%> |
-<a class="back" href="/books">Back</a>
+<%= link_to "Show", book_path%> |
+<%= link_to "Back", books_path%>
+
+
+
+</div>
+</div>
+</div>
+
+
+</main>
+</body>
+</html>
