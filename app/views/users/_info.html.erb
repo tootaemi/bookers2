@@ -13,10 +13,21 @@
    <td><%= @user.introduction %></td>
    </tr>
    </table>
-   <div class='row'>
-    <%= link_to edit_user_path(user.id) do %>
+
+  <div class='row'>
+   <td><% if @user.id == current_user.id %>
+    <%= link_to edit_user_path(current_user.id) do %>
     <i class="fas fa-user-cog"></i>
-    <% end %></div>
+    <% end %>
+    <% else %>
+     <%= link_to user_path(current_user.id) do %>
+    <i class="fas fa-user-cog"></i>
+    <% end %>
+  <% end %></td>
+
+
+    </div>
+
 
     <h2>New book</h2>
     <%= form_with model:book do |f| %>

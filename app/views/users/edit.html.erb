@@ -1,51 +1,39 @@
 <html>
-<body>
-<main>
-<p id="notice"></p>
-<div class='container'>
-<div class='row'>
-<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-<h2>User info</h2>
-
-<% if @user.errors.any? %>
-<h3><%= @user.errors.count %>errors prohibited this obj from being saved:
-<ul></h3><% @user.errors.full_messages.each do |message| %>
-<li><%= message %></li>
-<% end %>
-</ul>
-<% end %>
-
-
-<div class="row">
-<div class="col-md-6 col-md-offset-3">
-<%= form_for (@user) do |f| %>
-<% end %>
-<div class="gravatar_edit">
-</div>
-</div>
-</div>
-
-<%= form_with model: @user do |f| %>
-<label for="inputName">Name</label><br>
-<%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
-
-<br><label for="inputImage">Image</label><br>
-
-<%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "pimage/*" %>
-
-<br><%= f.label :Introduction %>
-<%= f.text_field :introduction, class: 'form_control' %>
-<br> <%= f.submit "Update User" %>
-<% end %>
-
-
-
-
-</div>
-</div>
-</div>
-
-
-</main>
-</body>
-</html>
+    <body>
+        <main>
+            <p id="notice"></p>
+            <div class='container'>
+                <div class='row'>
+                    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+                        <h2>User info</h2>
+                        <% if @user.errors.any? %>
+                        <h3><%= @user.errors.count %>errors prohibited this obj from being saved:
+                        <ul></h3><% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                        <% end %>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <%= form_for (@user) do |f| %>
+                                <% end %>
+                                <div class="gravatar_edit">
+                                    
+                                </div>
+                                </div>
+                                </div>
+                                <%= form_with model: @user do |f| %>
+                                <label for="inputName">Name</label><br>
+                                <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%><br>
+                                <br><label for="inputImage">Image</label>
+                                <br><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "pimage/*" %><br>
+                                <br><%= f.label :Introduction %>
+                                <br><%= f.text_field :introduction, class: 'form_control' %><br>
+                                <br> <%= f.submit "Update User" %>
+                                <% end %>
+                                </div>
+                                </div>
+                                </div>
+                                </main>
+                                </body>
+                                </html>

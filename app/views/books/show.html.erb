@@ -14,14 +14,11 @@
                   　<%= @book.user.name %>
               <% end %>
               </td>
-
-
-                  <td><%= link_to book_path(@book), method: :get do %>
-                  <%= @book.title %>
-                  <td><%= @book.body %></td>
-                  <% end %></td>
-
-
+              <td><%= link_to book_path(@book), method: :get do %>
+              <%= @book.title %>
+              <td><%= @book.body %></td>
+              <% end %></td>
+              
                     <td><p><%= link_to edit_user_path(@user) do%></p>
                     <% end %>
                     </td>
