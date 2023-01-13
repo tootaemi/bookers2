@@ -15,7 +15,7 @@
                     <a class="navbar-brand" href="/"><span>Bookers2</span></a>
                     <% if user_signed_in? %>
                     <%= link_to user_path(current_user.id), class: "nav-link text-light", method: :get do %>
-                    <i class="fa-solid fa-house-chimney"></i> Home
+                    <i class="fas fa-home"></i> Home
                     <% end %>
                     <%= link_to users_path, class: "nav-link text-light", method: :get do %>
                     <i class="fas fa-users"></i>Users
@@ -28,7 +28,8 @@
                     <% end %>
                     <% else %>
                     <%= link_to root_path, class: "nav-link text-light", method: :get do %>
-                    <i class="fa-solid fa-house-chimney"></i> Home
+                    <i class="fas fa-home"></i>Home
+                    
                     <% end %>
                     <%= link_to about_path, class: "nav-link text-light", method: :get do %>
                     <i class="fas fa-link"></i>About
@@ -45,6 +46,8 @@
                     </nav>
                     </header>
                     </body>
+                    
+                    
                     <p id="notice"><%= notice %></p>
                     <%= yield %>
                     </html>

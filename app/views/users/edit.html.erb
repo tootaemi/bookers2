@@ -27,6 +27,7 @@
                                 <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%><br>
                                 <br><label for="inputImage">Image</label>
                                 <br><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "pimage/*" %><br>
+                                
                                 <br><%= f.label :Introduction %>
                                 <br><%= f.text_field :introduction, class: 'form_control' %><br>
                                 <br> <%= f.submit "Update User" %>
